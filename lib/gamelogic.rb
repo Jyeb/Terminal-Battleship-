@@ -4,11 +4,12 @@ class Game_logic < ships
   end
 
   def create_grid
-    grid = [] 
+    @grid = [] 
     for y in 0..9 
       for x in 0..9 
-        grid << [y,x] 
+        @grid << [y,x] 
       end
     end
+    @grid
   end
 end
