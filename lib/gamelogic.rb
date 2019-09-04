@@ -1,4 +1,5 @@
 require 'curses'
+require_relative 'ships'
 class Game_logic < Ship
   def create_grid
     @grid = [] 
@@ -10,13 +11,18 @@ class Game_logic < Ship
     @grid
   end
 
-  def append_ships
+  def create_ships
+    carrier = Ship.carriers,
+    battleship = Ship.battleships,
+    cruiser = Ship.cruisers,
+    submarine = Ship.submarines,
+    destroyer = Ship.destroyers
     @create_ships = [
-    Ship.carrier,
-    Ship.battleship,
-    Ship.cruiser,
-    Ship.submarine,
-    Ship.destroyer
+      carrier,
+      battleship,
+      cruiser,
+      submarine, 
+      destroyer   
   ]
   end
 end
