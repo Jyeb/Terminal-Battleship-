@@ -6,7 +6,7 @@ Terminal-Battleship is a game created following the ruleset of the popular strat
 ## Getting Started
 1. Install Ruby on your local machine 
 2. Download the repository, and unzip the files 
-3. Using the terminal, located to the directory 
+3. Using the terminal, locate the directory containing the files
 
 ## Installing
 
