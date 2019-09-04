@@ -7,7 +7,7 @@ class Ship
   end
 
   def carriers
-    new([[0,0],[0,1],[0,2],[0,3],[0,4]] , 5)
+    new([[0,0],[0,1],[0,2],[0,3],[0,4]], 5)
   end
 
   def battleships

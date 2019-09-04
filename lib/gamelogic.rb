@@ -1,6 +1,8 @@
 require 'curses'
 require_relative 'ships'
 class Game_logic < Ship
+  def initialize 
+  end
   def create_grid
     @grid = [] 
     for y in 0..9 
@@ -24,5 +26,9 @@ class Game_logic < Ship
       submarine, 
       destroyer   
   ]
+  end
+
+  def gameplay 
+    
   end
 end

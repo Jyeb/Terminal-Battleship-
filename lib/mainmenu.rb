@@ -13,6 +13,9 @@ class Mainmenu < Board
     loop do
       centre_x = @win.maxx/2
       centre_y = @win.maxy/2
+      welcome = "Welcome to Battleships, please select an option"
+      @win.setpos(centre_y - 2 , centre_x - welcome.length/2)
+      @win << welcome
       @options.each.with_index do |option, i|
         @win.attron(Curses::A_STANDOUT) if i == @selected % @options.length
         @win.setpos(centre_y + i, centre_x - option.length/2)
