@@ -17,9 +17,9 @@ class Mainmenu < Board
     sleep(2)
     exit
   end
+  
   def options 
-    loop do
-    
+    loop do  
       welcome = "Welcome to Battleships, please select an option"
       @win.setpos(@centre_y - 2 , @centre_x - welcome.length/2)
       @win << welcome
@@ -40,6 +40,5 @@ class Mainmenu < Board
       end
     end
     game_board
-
   end
 end

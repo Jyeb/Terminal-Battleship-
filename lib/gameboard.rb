@@ -21,9 +21,9 @@ class Board < Game_logic
 
   def controls 
     @win.clear
-
     instructions = 
     [
+      "Instructions",
       "From the menu, press start game to begin the game.", 
       "Enter the desired coordinates of your ships using the keyboard [A1]-[J10].",
       "Guess the coordinates of the enemy ships.",
@@ -110,15 +110,3 @@ class Board < Game_logic
     end
     end
 end
-
-
-
-
-
-
-  
-# def append_ships
-#   swin = @win.subwin(10,20,5,10)
-  
-
-# end
