@@ -67,4 +67,3 @@ class Board
     computer_board.getch
   end
 end
-
