@@ -15,23 +15,25 @@ class Board < Game_logic
     @numbers = [*'1'..'10']
     @win.keypad = true
     @win.nodelay = false
+    @centre_x = @win.maxx/2
+    @centre_y = @win.maxy/2
   end
 
   def controls 
     @win.clear
-    centre_x = @win.maxx/2
-    centre_y = @win.maxy/2
+
     instructions = 
     [
       "From the menu, press start game to begin the game.", 
       "Enter the desired coordinates of your ships using the keyboard [A1]-[J10].",
       "Guess the coordinates of the enemy ships.",
-      "Press [P] to pause the game."
+      "Press [P] to pause the game.",
+      "Press [ENTER] to return to the main menu"
     ]
  
     loop do
       instructions.each_with_index do |item, i|
-        @win.setpos(centre_y + i, centre_x - item.length/2)
+        @win.setpos(@centre_y + i, @centre_x - item.length/2)
         @win << item
       end
       @win.refresh
@@ -85,9 +87,28 @@ class Board < Game_logic
       end
       @computer_board.box("|", "-")
       @win.refresh
+      append_ships
       @computer_board.getch
     end
   end
+
+  def append_ships 
+    shipwin = @win.subwin(10,20,5,10)
+    shipchars = ["C","B","R","S","D"]
+    loop do
+      y = -1
+      create_ships.each do |item|
+        i = 0
+        y+=1
+        item.pos.each do |x|
+          shipwin.setpos(x[0],x[1] + i)
+          shipwin << shipchars[y]
+          i+=1
+        end
+      end
+      shipwin.refresh
+    end
+    end
 end
 
 
@@ -99,12 +120,5 @@ end
 # def append_ships
 #   swin = @win.subwin(10,20,5,10)
   
-#   create_ships.each do |item|
-#     item.each do |x|
-#       swin.setpos(x)
-#       swin << "X" + " "
-#     end
-#   end
-#   swin.refresh
-#   swin.getch
+
 # end

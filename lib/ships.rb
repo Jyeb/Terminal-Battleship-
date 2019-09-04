@@ -6,23 +6,23 @@ class Ship
     @pos_hit = 0
   end
 
-  def carriers
+  def self.carriers
     new([[0,0],[0,1],[0,2],[0,3],[0,4]], 5)
   end
 
-  def battleships
+  def self.battleships
     new([[1,0],[1,1],[1,2],[1,3]], 4)
   end
 
-  def cruisers
+  def self.cruisers
     new([[2,0],[2,1],[2,2]], 3)
   end
 
-  def submarines 
+  def self.submarines 
     new([[3,0],[3,1],[3,2]], 3)
   end
 
-  def destroyers 
+  def self.destroyers 
     new([[4,0],[4,1]], 2)
   end
 end

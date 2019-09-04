@@ -2,30 +2,27 @@ require 'curses'
 require_relative 'ships'
 class Game_logic < Ship
   def initialize 
+    @grid = create_grid
+    @ships = create_ships
   end
   def create_grid
-    @grid = [] 
+    grid = [] 
     for y in 0..9 
       for x in 0..9 
-        @grid << [y,x] 
+        grid << [y,x] 
       end
     end
-    @grid
+    grid
   end
 
   def create_ships
-    carrier = Ship.carriers,
-    battleship = Ship.battleships,
-    cruiser = Ship.cruisers,
-    submarine = Ship.submarines,
-    destroyer = Ship.destroyers
-    @create_ships = [
-      carrier,
-      battleship,
-      cruiser,
-      submarine, 
-      destroyer   
-  ]
+    [
+    Ship.carriers,
+    Ship.battleships,
+    Ship.cruisers,
+    Ship.submarines,
+    Ship.destroyers
+    ]
   end
 
   def gameplay 
