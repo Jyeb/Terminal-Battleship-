@@ -1,10 +1,6 @@
 class Ship 
   @@rand = [0,1,2,3].sample
   @@cprand = [0,1,2,3].sample
-  def initialize(name)
-    @name = name 
-  end
-
   def carriers(random)
     boards = 
     [
