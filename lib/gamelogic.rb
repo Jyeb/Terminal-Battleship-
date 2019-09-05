@@ -7,6 +7,8 @@ class Game_logic < Ship
     @ships = create_ships
     @letters = [*'A'..'J']
     @numbers = [*'1'..'10']
+    @selectloc = create_positions
+    @occupied = occupied
   end
   def create_grid
     Array.new(10){Array.new(10)}
@@ -17,7 +19,7 @@ class Game_logic < Ship
     for i in 0..letters.length-1
       positions << @numbers.map { |number| @letters[i] + number }
     end
-    positions.flatten!
+    positions
   end
 
   def create_ships
@@ -30,9 +32,8 @@ class Game_logic < Ship
     ]
   end
 
-  def selection
+  def occupied
     grid = @grid.dup
-
     @ships.each do |ship|
       ship.pos.each do |array|
           grid[array[0]][array[1]] = "occupied"
@@ -41,8 +42,22 @@ class Game_logic < Ship
     grid
   end
 
-  def gameplay 
-    selection
+  def alphan_index(lett_inp, int_inp)
+    user_value = "A5"
+    arr_num = @selectloc.find_index { |arr| arr.include?(user_value)}
+    ind_num = @selectloc[top_level].index(user_value)
+    return arr_num, ind_num
   end
 
+  def gameplay(lett_inp, int_inp)
+    loop do
+      ind_pos = alphan_index(lett_inp, int_inp)
+      case @selectloc[ind_pos[0]][ind_pos[1]]
+      when "occupied"
+        "HIT"
+      else
+        next
+      end
+    end
+  end
 end

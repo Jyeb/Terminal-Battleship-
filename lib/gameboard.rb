@@ -88,7 +88,22 @@ class Board < Game_logic
         end
         shipwin.refresh
       end
+      @win.setpos(@centre_y + 5, @centre_x + 10)
+      @win << gameplay.to_s
       @win.refresh
+
+      @win.getch 
+      
+      @win.getch 
     end
+
     end
 end
+
+
+      #   @win << "\n"
+      # gameplay.each do |row|
+      #   @win << row.to_s
+      # @win << gameplay.to_s
+      # end
+      # @win.refresh
