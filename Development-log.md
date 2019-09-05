@@ -12,3 +12,9 @@ During the initial development plan there were features which at the time, seeme
 5th September, 2019
 ```
 The intended testing procedure was to use TDD (Test Driven Development) and follow the Red-Green-Refactor development process. This would involve the process of first creacting failing tests, and then proceed to create the desired functionality and attempt to create working tests. The multiple procedural steps occuring within the game made this quite difficult, as the desired assertions for test types were difficult to check prior to the creation of other parts. An example of this relates to user interaction. The user is inputing alphanumeric coordinates, which are compared to a corresponding index within another array, the values attained at the index of the second array, are then checked against values within a multitude of other arrays, created within seperate objects. This made the procedure rather difficult, as the data types of assertions were subject to change throughout development, making post-production test creation a more effecient solution.
+
+## Alterations
+```
+5th Semptember, 2019
+```
+A mostly working model of the game was in operation, however when attempting to refactor to implement neccesary features, there were issues in relation to how certain objects were being created. The `Ship` class and instance variables will be altered in order to pass the position of the object at a later date. Due to time constraints, an array of Hard-coded boards will be implemented, which will then be chosen at random to initialize the computer players board. 

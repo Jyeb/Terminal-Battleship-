@@ -9,15 +9,6 @@ class Mainmenu < Board
     @options = ["Start Game", "Controls", "Exit",]
   end
 
-  def exit_game(leave)
-    @win.clear
-    @win.setpos(@centre_y, @centre_x - leave.length/2)
-    @win << leave
-    @win.refresh
-    sleep(2)
-    exit
-  end
-  
   def options 
     loop do  
       welcome = "Welcome to Battleships, please select an option"
@@ -39,6 +30,34 @@ class Mainmenu < Board
         @selected % @options.length == 2 ? exit_game("Thankyou for playing!") : @selected % @options.length == 1 ? controls : break 
       end
     end
-    game_board
+    split_screen
+  end
+
+  def controls 
+    @win.clear 
+    instructions = 
+    [
+      "Instructions",
+      "  ", 
+      "Select [Start Game] to begin the game", 
+      "  ", 
+      "Guess the Alphanumeric Coordinates of the enemy ships [A1] - [J10]",
+      "  ", 
+      "The first player to destroy all enemy ships wins",
+      "  ",
+      "Press [ENTER] to return to the main menu"
+    ]
+    loop do
+      instructions.each_with_index do |item, i|
+        @win.setpos(@centre_y + i, @centre_x - item.length/2)
+        @win << item 
+      end
+      @win.refresh
+      case @win.getch
+      when Curses::KEY_ENTER, 10
+        break
+      end
+    end
+    @win.clear
   end
 end
