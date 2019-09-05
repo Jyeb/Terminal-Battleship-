@@ -13,8 +13,6 @@ Terminal-Battleships is a game created following the ruleset of the popular stra
 
 3. Using the terminal, locate the directory containing the files
 
-  
-
 ## Installing 
 
 Install bundler on your local machine.
