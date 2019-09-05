@@ -39,12 +39,12 @@ class Mainmenu < Board
     [
       "Instructions",
       "  ", 
-      "Select [Start Game] to begin the game.", 
+      "Select [Start Game] to begin the game", 
       "  ", 
       "Guess the Alphanumeric Coordinates of the enemy ships [A1] - [J10]",
       "  ", 
-      "Press [P] to pause the game.",
-      "  ", 
+      "The first player to destroy all enemy ships wins",
+      "  ",
       "Press [ENTER] to return to the main menu"
     ]
     loop do

@@ -1,10 +1,6 @@
 require_relative 'ships'
 
 class Players < Ship
-  def initialize 
-    @ships_remaining = 5 
-  end
-
   def player_one 
     @carrier = Ship.new("Carrier").carriers(@@rand)
     @battleship = Ship.new("Battleship").battleships(@@rand)

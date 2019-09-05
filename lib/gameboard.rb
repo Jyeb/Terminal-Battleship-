@@ -16,20 +16,28 @@ class Board < Game
     @win.nodelay = false
     @centre_x = @win.maxx/2
     @centre_y = @win.maxy/2
-    Curses.init_pair(1, Curses::COLOR_RED, Curses::COLOR_RED)
-    win.attron(Curses.color_pair(1))
+    # Curses.init_pair(1, Curses::COLOR_RED, Curses::COLOR_RED)
+    # win.attron(Curses.color_pair(1))
   end
 
   def split_screen 
     @win.clear 
     @leftscreen = @win.subwin(@win.maxy, @win.maxx/2, 0, 0)
     @rightscreen = @win.subwin(@win.maxy, @win.maxx/2, 0, @win.maxx/2)
+    turn = 0 
     loop do 
+      @win.clear
       @leftscreen.box("|","-")
       @rightscreen.box("|", "-")
       create_boards
       append_ships
-      @win.refresh
+      append_cp_ships
+      if turn % 2 == 0
+        player_display
+      else
+        cp_display
+      end
+      turn += 1
     end 
   end 
 
@@ -59,36 +67,52 @@ class Board < Game
     @player_ships.each do |ships|
       ships.each do |positions|
         player_win.setpos(positions[0], positions[1]*2 -1)
-        player_win << "S"
+        if @player_ship_at_pos[positions[1]][positions[0]] == 'HIT'
+          player_win << "H"
+        else
+          player_win << "S"
+        end
       end
     end
   end
+
+  def append_cp_ships
+    colors = []
+    @cp_win = @rightscreen.subwin(10,20,5,@win.maxx/2 + 11)
+    @cp_ships.each do |ships|
+      ships.each do |positions|
+        @cp_win.setpos(positions[0], positions[1]*2 -1)
+        if @cp_ship_at_pos[positions[1]][positions[0]] == 'HIT'
+          @cp_win << "H"
+        end
+      end
+    end
+  end
+
+  def player_display
+    score = 0
+    user_prompt = "Please enter Coordinates: "
+    @win.setpos(@centre_y + @centre_y/2, @centre_x - @centre_x/2 - user_prompt.length/2 )
+    @win << user_prompt
+    @win.refresh
+    coordinate = @win.getstr.upcase
+    collision_detection(coordinate)
+    @win.setpos(@centre_y + @centre_y/2 + 1, @centre_x - @centre_x/2 - 1)
+    @win << coordinate
+    @win.refresh
+    sleep(1)
+  end
+
+  def cp_display
+    cp_message = "Is your ship at..."
+    @win.setpos(@centre_y + @centre_y/2, @centre_x - @centre_x/2 - cp_message.length/2)
+    @win << cp_message
+    @win.refresh
+    cp_coord = @board_positions.flatten.sample
+    cp_collision_detection(cp_coord)
+    @win.setpos(@centre_y + @centre_y/2 + 1, @centre_x - @centre_x/2 - 1)
+    @win << cp_coord
+    @win.refresh
+    sleep(1)
+  end
 end
-
-#   def append_ships 
-#     shipwin = @win.subwin(10,20,5,10)
-#     shipchars = ["C","B","R","S","D"]
-#     loop do
-#       @ships.each.with_index do |item, y|
-#         item.pos.each.with_index do |array, i|
-#           shipwin.setpos(array[0],array[1] + i)
-#           shipwin << shipchars[y]
-#         end
-#         shipwin.refresh
-#       end
-#     end
-#   def 
-#     loop do
-#       entry = "Please enter coordinates: "
-#       @win.setpos(@centre_y + @centre_y/2, @centre_x - @centre_x/2 - entry.length/2 )
-#       @win << entry
-#       letter, number = @win.getch, @win.getch 
-#       @win << letter.upcase + number
-#       @win.refresh
-#       gameplay(letter.upcase,number.upcase)
-#       @win << @occupied.to_s
-#       @win.refresh
-#     end
-#   end
-
-# end
