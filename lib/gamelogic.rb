@@ -1,62 +1,79 @@
 require 'curses'
-require_relative 'ships'
-class Game_logic < Ship
-  attr_accessor :letters, :numbers, :grid
+require_relative 'players'
+class Game < Players
   def initialize 
-    @grid = create_grid
-    @ships = create_ships
     @letters = [*'A'..'J']
     @numbers = [*'1'..'10']
-    @selectloc = create_positions
-    @occupied = occupied
+    @grid = create_grid
+    player_one
+    @player_ships = player_ships
+    @cp_ships = cp_ships
+    @board_positions = board_positions
+    @cp_ship_at_pos = cp_ship_at_pos
+    @player_ship_at_pos = player_ship_at_pos
   end
-  def create_grid
+
+  def create_grid 
     Array.new(10){Array.new(10)}
   end
 
-  def create_positions
+  def board_positions
     positions = []
-    for i in 0..letters.length-1
+    for i in 0...@letters.length
       positions << @numbers.map { |number| @letters[i] + number }
     end
     positions
   end
 
-  def create_ships
+  def player_ships
     [
-    Ship.carriers,
-    Ship.battleships,
-    Ship.cruisers,
-    Ship.submarines,
-    Ship.destroyers
+      @carrier,
+      @battleship,
+      @cruiser,
+      @submarine,
+      @destroyer
     ]
   end
+  
+  def cp_ships 
+    [
+      @carrier,
+      @battleship,
+      @cruiser,
+      @submarine,
+      @destroyer
+    ]
+  end 
 
-  def occupied
+  def ships_at_pos(player)
     grid = @grid.dup
-    @ships.each do |ship|
-      ship.pos.each do |array|
-          grid[array[0]][array[1]] = "occupied"
+    player.each do |ship|
+      ship.each do |array|
+        grid[array[0]][array[1]] = "occupied"
       end
     end
     grid
   end
 
-  def alphan_index(lett_inp, int_inp)
-    user_value = lett_inp + int_inp.to_s
-    arr_num = @selectloc.find_index { |arr| arr.include?(user_value)}
-    ind_num = @selectloc[arr_num].index(user_value)
-    return arr_num, ind_num
+  def cp_ship_at_pos
+    ships_at_pos(@cp_ships)
   end
 
-  def gameplay(lett_inp, int_inp)
-    ind_pos = alphan_index(lett_inp, int_inp)
-    if @occupied[ind_pos[0]][ind_pos[1]] == "occupied"
-      @occupied[ind_pos[0]][ind_pos[1]] = "HIT"
-    else 
-      return "MISS"
+  def player_ship_at_pos
+    ships_at_pos(@player_ships)
+  end
+
+  def player_turn(player_input)
+    user_input = player_input
+    arr_index = @board_positions.find_index { |arr| arr.include?(user_input)}
+    item_index = @board_positions[arr_num].index(user_input)
+    return arr_index, item_index
+  end  
+
+  def collision_detection(player_input)
+    relative_index = player_turn(player_input)
+    if @cp_ship_at_pos[relative_index[0]][relative_index[1]] == "occupied"
+      @cp_ship_at_pos[relative_index[0]][relative_index[1]] = "HIT"
     end
-    "HIT"
   end
-
 end
