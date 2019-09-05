@@ -1,3 +1,4 @@
+#Ship class, initializing potential board layouts.
 class Ship 
   @@rand = [0,1,2,3].sample
   @@cprand = [0,1,2,3].sample

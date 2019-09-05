@@ -2,6 +2,7 @@ require 'curses'
 require 'artii'
 require_relative 'gameboard'
 
+# Main menu class
 class Mainmenu < Board
   include Curses
   def initialize(top, left)
@@ -9,10 +10,9 @@ class Mainmenu < Board
     @selected = 0
     @options = ["Start Game", "Controls", "Exit",]
   end
-
+  # create method for functional user interaction with the main menu screen
   def options 
     loop do  
-
       welcome = Artii::Base.new.asciify("Welcome to Battleships")
       welcome_the_sequel = Artii::Base.new.asciify("please select an option")
       welcome.split("\n").each.with_index do |line, i|
@@ -41,7 +41,7 @@ class Mainmenu < Board
     end
     split_screen
   end
-
+  #controls menu, explaining game operation
   def controls 
     @win.clear 
     instructions = 

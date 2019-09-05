@@ -1,6 +1,6 @@
 require 'curses'
 require_relative 'gamelogic'
-
+# Board class initialzing the game screen
 class Board < Game
   def initialize(top, left)
     super()
@@ -17,7 +17,7 @@ class Board < Game
     @centre_x = @win.maxx/2
     @centre_y = @win.maxy/2
   end
-
+  # split the screen in two, displaying a window for each player
   def split_screen 
     @win.clear 
     @leftscreen = @win.subwin(@win.maxy, @win.maxx/2, 0, 0)
@@ -38,7 +38,7 @@ class Board < Game
       turn += 1
     end 
   end 
-
+  #append game board visuals
   def create_boards
     @leftscreen.setpos(4,10) 
     @letters.each do |i|
@@ -58,7 +58,7 @@ class Board < Game
       @rightscreen << item 
     end
   end
-
+  #append the ship locations to the screen, and add visual changes upon locating/hitting a ship & scoring system
   def append_ships
     @cp_score = 0 
     colors = []
@@ -78,7 +78,7 @@ class Board < Game
       end
     end
   end
-
+  ## as above for computer player
   def append_cp_ships
     colors = []
     @score = 0  
@@ -96,7 +96,7 @@ class Board < Game
       end
     end
   end
-
+  # Function displaying victory message, and exiting game
   def game_won 
     won_msg = "You Won!"
     @win.clear
@@ -106,7 +106,7 @@ class Board < Game
     sleep(2)
     exit_game("Thankyou for playing!")
   end
-
+  # Game lost case, and exit
   def game_lost 
     loss_msg = "You Lost!"
     @win.clear
@@ -116,7 +116,7 @@ class Board < Game
     sleep(2)
     exit_game("Thankyou for playing!")
   end
-
+  # variables, and methods passed through the game loop on each of the players turns.
   def player_display
     user_prompt = "Please enter Coordinates: "
     @win.setpos(@centre_y + @centre_y/2, @centre_x - @centre_x/2 - user_prompt.length/2 )
@@ -129,7 +129,7 @@ class Board < Game
     @win.refresh
     sleep(1)
   end
-
+  # as above, for computer player
   def cp_display
     cp_message = "Is your ship at..."
     @win.setpos(@centre_y + @centre_y/2, @centre_x - @centre_x/2 - cp_message.length/2)
@@ -140,9 +140,9 @@ class Board < Game
     @win.setpos(@centre_y + @centre_y/2 + 1, @centre_x - @centre_x/2 - 1)
     @win << cp_coord
     @win.refresh
-    sleep(1)
+    sleep(2)
   end
-
+  #exit game
   def exit_game(leave)
     @win.clear
     @win.setpos(@centre_y, @centre_x - leave.length/2)
