@@ -53,6 +53,10 @@ class Game_logic < Ship
     ind_pos = alphan_index(lett_inp, int_inp)
     if @occupied[ind_pos[0]][ind_pos[1]] == "occupied"
       @occupied[ind_pos[0]][ind_pos[1]] = "HIT"
+    else 
+      return "MISS"
     end
+    "HIT"
   end
+
 end

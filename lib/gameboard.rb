@@ -73,7 +73,6 @@ class Board < Game_logic
       @computer_board.box("|", "-")
       @win.refresh
       append_ships
-      @computer_board.getch
     end
   end
 
@@ -88,25 +87,20 @@ class Board < Game_logic
         end
         shipwin.refresh
       end
-      @win.refresh
-      @win.setpos(@centre_y + 5, @centre_x - @centre_x/2)
-      @win << "Please enter coordinates"
-      letter = @win.getch 
-      @win << letter
-      number = @win.getch 
-      @win << number
-      @win.refresh
-      gameplay(letter.upcase,number.upcase)
-      @win << @occupied.to_s
-      @win.refresh
+      test
     end
-    end
+  end
+
+  def test
+      entry = "Please enter coordinates: "
+      @win.setpos(@centre_y + @centre_y/2, @centre_x - @centre_x/2 - entry.length/2 )
+      @win << entry
+      letter, number = @win.getch, @win.getch
+      @win << letter.upcase + number
+      @win.refresh
+      gamer = gameplay(letter.upcase,number.upcase)
+      @win << gamer.to_s
+      @win.refresh
+  end
+
 end
-
-
-      #   @win << "\n"
-      # gameplay.each do |row|
-      #   @win << row.to_s
-      # @win << gameplay.to_s
-      # end
-      # @win.refresh
