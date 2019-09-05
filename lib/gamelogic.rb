@@ -43,21 +43,16 @@ class Game_logic < Ship
   end
 
   def alphan_index(lett_inp, int_inp)
-    user_value = "A5"
+    user_value = lett_inp + int_inp.to_s
     arr_num = @selectloc.find_index { |arr| arr.include?(user_value)}
-    ind_num = @selectloc[top_level].index(user_value)
+    ind_num = @selectloc[arr_num].index(user_value)
     return arr_num, ind_num
   end
 
   def gameplay(lett_inp, int_inp)
-    loop do
-      ind_pos = alphan_index(lett_inp, int_inp)
-      case @selectloc[ind_pos[0]][ind_pos[1]]
-      when "occupied"
-        "HIT"
-      else
-        next
-      end
+    ind_pos = alphan_index(lett_inp, int_inp)
+    if @occupied[ind_pos[0]][ind_pos[1]] == "occupied"
+      @occupied[ind_pos[0]][ind_pos[1]] = "HIT"
     end
   end
 end

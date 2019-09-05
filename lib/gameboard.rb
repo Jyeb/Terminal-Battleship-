@@ -88,15 +88,18 @@ class Board < Game_logic
         end
         shipwin.refresh
       end
-      @win.setpos(@centre_y + 5, @centre_x + 10)
-      @win << gameplay.to_s
       @win.refresh
-
-      @win.getch 
-      
-      @win.getch 
+      @win.setpos(@centre_y + 5, @centre_x - @centre_x/2)
+      @win << "Please enter coordinates"
+      letter = @win.getch 
+      @win << letter
+      number = @win.getch 
+      @win << number
+      @win.refresh
+      gameplay(letter.upcase,number.upcase)
+      @win << @occupied.to_s
+      @win.refresh
     end
-
     end
 end
 
