@@ -16,8 +16,6 @@ class Board < Game
     @win.nodelay = false
     @centre_x = @win.maxx/2
     @centre_y = @win.maxy/2
-    # Curses.init_pair(1, Curses::COLOR_RED, Curses::COLOR_RED)
-    # win.attron(Curses.color_pair(1))
   end
 
   def split_screen 
@@ -62,6 +60,7 @@ class Board < Game
   end
 
   def append_ships
+    @cp_score = 0 
     colors = []
     player_win = @leftscreen.subwin(10,20,5,11)
     @player_ships.each do |ships|
@@ -69,8 +68,12 @@ class Board < Game
         player_win.setpos(positions[0], positions[1]*2 -1)
         if @player_ship_at_pos[positions[1]][positions[0]] == 'HIT'
           player_win << "H"
+          @cp_score +=1
         else
           player_win << "S"
+        end
+        if @cp_score == 17
+          game_lost
         end
       end
     end
@@ -78,19 +81,43 @@ class Board < Game
 
   def append_cp_ships
     colors = []
+    @score = 0  
     @cp_win = @rightscreen.subwin(10,20,5,@win.maxx/2 + 11)
     @cp_ships.each do |ships|
       ships.each do |positions|
         @cp_win.setpos(positions[0], positions[1]*2 -1)
         if @cp_ship_at_pos[positions[1]][positions[0]] == 'HIT'
           @cp_win << "H"
+          @score += 1
+        end
+        if @score == 17
+          game_won
         end
       end
     end
   end
 
+  def game_won 
+    won_msg = "You Won!"
+    @win.clear
+    @win.setpos(@centre_y, @centre_x - won_msg.length/2)
+    @win << won_msg
+    @win.refresh
+    sleep(2)
+    exit_game("Thankyou for playing!")
+  end
+
+  def game_lost 
+    loss_msg = "You Lost!"
+    @win.clear
+    @win.setpos(@centre_y, @centre_x - won_msg.length/2)
+    @win << loss_msg
+    @win.refresh
+    sleep(2)
+    exit_game("Thankyou for playing!")
+  end
+
   def player_display
-    score = 0
     user_prompt = "Please enter Coordinates: "
     @win.setpos(@centre_y + @centre_y/2, @centre_x - @centre_x/2 - user_prompt.length/2 )
     @win << user_prompt
@@ -114,5 +141,14 @@ class Board < Game
     @win << cp_coord
     @win.refresh
     sleep(1)
+  end
+
+  def exit_game(leave)
+    @win.clear
+    @win.setpos(@centre_y, @centre_x - leave.length/2)
+    @win << leave
+    @win.refresh
+    sleep(2)
+    exit
   end
 end
