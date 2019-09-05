@@ -1,7 +1,7 @@
 require 'curses'
 require_relative 'ships'
 class Game_logic < Ship
-  attr_accessor :letters, :numbers, :ships, :grid
+  attr_accessor :letters, :numbers, :grid
   def initialize 
     @grid = create_grid
     @ships = create_ships
@@ -9,13 +9,7 @@ class Game_logic < Ship
     @numbers = [*'1'..'10']
   end
   def create_grid
-    grid = [] 
-    for y in 0..9 
-      for x in 0..9 
-        grid << [y,x] 
-      end
-    end
-    grid
+    Array.new(10){Array.new(10)}
   end
 
   def create_positions
@@ -36,19 +30,19 @@ class Game_logic < Ship
     ]
   end
 
-  def selection(input)
-    ships.each.with_index do |item, y|
-      item.pos.each do |array|
-        array.each do |location|
-          grid.each do |relative|
-            if relative == location
-              relative = "occupied"
-          end
-        end
+  def selection
+    grid = @grid.dup
+
+    @ships.each do |ship|
+      ship.pos.each do |array|
+          grid[array[0]][array[1]] = "occupied"
       end
     end
+    grid
   end
 
   def gameplay 
+    selection
   end
+
 end

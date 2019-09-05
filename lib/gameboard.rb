@@ -81,13 +81,14 @@ class Board < Game_logic
     shipwin = @win.subwin(10,20,5,10)
     shipchars = ["C","B","R","S","D"]
     loop do
-      ships.each.with_index do |item, y|
+      @ships.each.with_index do |item, y|
         item.pos.each.with_index do |array, i|
           shipwin.setpos(array[0],array[1] + i)
           shipwin << shipchars[y]
         end
         shipwin.refresh
       end
+      @win.refresh
     end
     end
 end
