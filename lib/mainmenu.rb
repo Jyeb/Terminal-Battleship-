@@ -1,4 +1,5 @@
 require 'curses'
+require 'artii'
 require_relative 'gameboard'
 
 class Mainmenu < Board
@@ -11,9 +12,17 @@ class Mainmenu < Board
 
   def options 
     loop do  
-      welcome = "Welcome to Battleships, please select an option"
-      @win.setpos(@centre_y - 2 , @centre_x - welcome.length/2)
-      @win << welcome
+
+      welcome = Artii::Base.new.asciify("Welcome to Battleships")
+      welcome_the_sequel = Artii::Base.new.asciify("please select an option")
+      welcome.split("\n").each.with_index do |line, i|
+        @win.setpos(@centre_y - 10 + i, 13)
+        @win << line
+      end
+      welcome_the_sequel.split("\n").each.with_index do |line, i|
+        @win.setpos(@centre_y + 5 + i, 15)
+        @win << line
+      end
       @options.each.with_index do |option, i|
         @win.attron(Curses::A_STANDOUT) if i == @selected % @options.length
         @win.setpos(@centre_y + i, @centre_x - option.length/2)
@@ -37,7 +46,7 @@ class Mainmenu < Board
     @win.clear 
     instructions = 
     [
-      "Instructions",
+      "Instructions:",
       "  ", 
       "Select [Start Game] to begin the game", 
       "  ", 
