@@ -1,7 +1,7 @@
 require 'test/unit'
 require_relative 'gamelogic'
 
-class GamelogicTest < Test::Unit::TestCase
+class Game_logic_Test < Test::Unit::TestCase
   def setup 
     @game = Game.new
     @ship_count = @game.player_ship_at_pos.flatten
