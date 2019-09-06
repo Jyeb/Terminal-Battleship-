@@ -1,6 +1,7 @@
 
 # Terminal-Battleships Application (Ruby)
-
+## Github
+https://github.com/Jyeb/Terminal-Battleship-
 ## Trello 
 [Trello Board](ttps://trello.com/b/8CDGrAdK/battleship-application)
 
