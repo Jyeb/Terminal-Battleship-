@@ -1,8 +1,5 @@
 # Terminal-Battleships Application (Ruby)
 # Development Plan
-
-### Trello 
-<https://trello.com/b/kwo34Wlz/terminal-app>
 ## Intended features
 ```
 4th september, 2019
