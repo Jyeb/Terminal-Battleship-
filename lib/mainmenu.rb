@@ -8,7 +8,7 @@ class Mainmenu < Board
   def initialize(top, left)
     super
     @selected = 0
-    @options = ["Start Game", "Controls", "Exit",]
+    @options = ["Start Game", "Controls", "Exit"]
   end
   # create method for functional user interaction with the main menu screen
   def options 

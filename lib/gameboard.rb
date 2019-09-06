@@ -38,7 +38,7 @@ class Board < Game
       turn += 1
     end 
   end 
-  #append game board visuals
+  #append game board visuals 
   def create_boards
     @leftscreen.setpos(4,10) 
     @letters.each do |i|
