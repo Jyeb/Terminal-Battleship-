@@ -71,13 +71,7 @@ class Game < Players
     item_index = @board_positions[arr_index].index(user_input)
     return arr_index, item_index
   end  
-  #takes in a random alphanumeric location, and returns..As above
-  def cp_turn(cp_guess)
-    checked_position = cp_guess
-    arr_index = @board_positions.find_index { |arr| arr.include?(checked_position)}
-    item_index = @board_positions[arr_index].index(checked_position)
-    return arr_index, item_index
-  end
+
   #takes the relative index attained from the user input, and compares it to
   #other arrays, determining if the value of an item at a corresponding index
   #indicates collision
@@ -89,7 +83,7 @@ class Game < Players
   end
   #as above for computer player
   def cp_collision_detection(cp_selection)
-    relative_index = cp_turn(cp_selection)
+    relative_index = player_turn(cp_selection)
     if @player_ship_at_pos[relative_index[0]][relative_index[1]] == "occupied"
        @player_ship_at_pos[relative_index[0]][relative_index[1]] = "HIT"
     end
