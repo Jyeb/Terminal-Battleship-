@@ -7,10 +7,17 @@ Terminal-Battleships is a game created following the ruleset of the popular stra
 ## Motivations
 The motivation behind the project was to create an enjoyable application, whilst challenging current programming knowledge. The aim was to create an app, that was challenging, enjoyable and realistic within the allotted time frame.
 Due to the restricted time, the application still has ample potential for further development.
+
 ## Getting Started
 1. Install Ruby on your local machine
 2. Download the repository, and unzip the files
 3. Using the terminal, locate the directory containing the files
+
+## Purpose and Scope
+The purpose of the application, was to showcase and develop fundamental programming skills, whilst creating an entertaining app. The application is intended for entertainment purposes, with a large focus on personal education, in relation to fundamental programming principles. The application will take the ruleset of the common strategy game, battleships, and developed using ruby. The application will be built in the terminal, using various gem's, and an implementation of various ruby gems. The application will allow a user to compete against a computer player, both players will take turns, attempting to determine the locations of the opponents ships. Correct guesses will return visual output to the terminal, indicating a correct choice has been made, this procedure will continue until either of the players has correctly guessed all locations of their opponents ships, at which point the result of the game will be displayed, along with a message prior to exiting the game. These features will be implemented through the use of object orientated program, functional programming, Test Driven Development (TDD), and utilization of the extensive ruby library. Education pertaining to the importance of extensive documentation will also be a primary focus of the development process. 
+
+Primarily, from a functional perspective the operation of the application is focused on entertainment. However, the app can also serve as a benchmark for other students learning software development.
+ From an entertainment perspective, the app can serve as a time-passer, whilst software developers, can use the  code as a template for further implementations. The time constraints on development, will limit the extent of short term implementations, however will serve as a template with the potential for extensive development.
 
 ## Installing
 
@@ -50,7 +57,6 @@ Adequate testing was completed to ensure application functionality was operating
 
 ![alt text](https://github.com/Jyeb/Terminal-Battleship-/blob/master/img/shiptests.png "Ship testing")
 ![alt text](https://github.com/Jyeb/Terminal-Battleship-/blob/master/img/shiptests.png "Logic testing")
-
 ## Copyright, ethical and social issues
 
 The application was created with the prime purpose of education, and entertainment, and as such issues relating to copyright and ethics are perceived to be negligible. Whilst the game `Battleships` is widely known, the rules of a game cannot be subject to copyright or patented.
