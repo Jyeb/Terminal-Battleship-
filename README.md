@@ -1,6 +1,9 @@
 
 # Terminal-Battleships Application (Ruby)
 
+## Trello 
+[Trello Board](ttps://trello.com/b/8CDGrAdK/battleship-application)
+
 ## Description
 
 Terminal-Battleships is a game created following the ruleset of the popular strategy game 'Battleships'. Players take turns selecting an alpha-numeric position on a game board, with the aim being to find the locations of the enemies ships. A winner is determined when all of the opponents ships have been destroyed.
@@ -49,6 +52,7 @@ The plan for the structure was created prior to writing any lines of code. The c
 `players`- A class containing methods for both game users. The player methods contain the ship objects allowing player interaction
 
 `ships` - The ships file holds all of the potential board layouts within the game.
+
 ## Testing
 The application was thoroughly tested throughout the development process as a means to ensure that functionality was operating as expected, and to prevent future changes to the application. Upon initialization of a window within the `curses` gem, the alteration of the terminal properties, hindered the procedure of testing for all objects containing an initialized window. This meant that these objects were untested. This however, should cause no issues, as the underlying functionality that creates the windows is reliant on properties inherited from objects, which underwent thorough testing.
 
@@ -57,9 +61,13 @@ Adequate testing was completed to ensure application functionality was operating
 
 ![alt text](https://github.com/Jyeb/Terminal-Battleship-/blob/master/img/shiptests.png "Ship testing")
 ![alt text](https://github.com/Jyeb/Terminal-Battleship-/blob/master/img/shiptests.png "Logic testing")
+## Features 
+The application contains several features, however the following could be considered the primary features that are pertinent to overall functionality of the game. The feature containing collision detection is a necessity as it's used for all player interactions within the game and determine outcome. Collision detection has interaction with player input, another feature which is required for the operation of the game. The entirety of the game loop is reliant on player input, on each iteration which is used to determine the outcome and visual feedback of the application. The menu system is also a primary feature responsible for the initialization of the game, it also holds the functionality to enter the primary game loop, exit the game, and a menu for instructions on how to play the game. 
+
 ## Copyright, ethical and social issues
 
 The application was created with the prime purpose of education, and entertainment, and as such issues relating to copyright and ethics are perceived to be negligible. Whilst the game `Battleships` is widely known, the rules of a game cannot be subject to copyright or patented.
+
 ## Author
 
 **Jye Bussa** - sole creator for the week 3 Coder Academy Assessment.

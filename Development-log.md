@@ -1,6 +1,5 @@
 # Terminal-Battleships Application (Ruby)
 # Development Plan
-
 ## Intended features
 ```
 4th september, 2019
