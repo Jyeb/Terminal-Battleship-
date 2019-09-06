@@ -1,6 +1,9 @@
 
 # Terminal-Battleships Application (Ruby)
 
+## Trello 
+[Trello Board](ttps://trello.com/b/8CDGrAdK/battleship-application)
+
 ## Description
 
 Terminal-Battleships is a game created following the ruleset of the popular strategy game 'Battleships'. Players take turns selecting an alpha-numeric position on a game board, with the aim being to find the locations of the enemies ships. A winner is determined when all of the opponents ships have been destroyed.
