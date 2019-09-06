@@ -1,5 +1,5 @@
 require_relative 'ships'
-
+# Players class, initializing ship objects, inherited from the ship class.
 class Players < Ship
   def player_one 
     @carrier = Ship.new.carriers(@@rand)
